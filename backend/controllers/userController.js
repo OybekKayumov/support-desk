@@ -56,6 +56,22 @@ const registerUser = asyncHandler(async (req, res) => {
 // @access  Public
 
 const loginUser = asyncHandler(async (req, res) => {
+  // get email and pwd from body
+  const {email, password} = req.body
+  const user = await User.findOne({email})
+
+  // Check user and pwd match, if user found and password is matches
+  if(user && (await bcrypt.compare(password, user.password))) {
+    res.status(200).json({
+      _id: user._id,
+      name: user.name,
+      email: user.email
+    })
+  } else {
+    res.status(401)
+    throw new Error('Invalid credentials')
+  }
+
   res.send('Login Route')
 })
 
