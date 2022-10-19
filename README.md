@@ -29,5 +29,5 @@
 ```
 
 $$
-\Omega(z) = \int_0^\infty 2022,.
+\Omega(z) = \int_0^\infty 2022
 $$
