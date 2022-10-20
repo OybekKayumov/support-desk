@@ -24,7 +24,10 @@ function Register() {
 
   const dispatch = useDispatch()
 
-  const { user, isLoading, isSuccess, message } = useSelector((state) => state.auth)
+  const { user, isLoading, isSuccess, message } = 
+    useSelector(
+      (state) => state.auth
+    )    
 
   const onChange = (e) => {
     setFormData((prevState) => ({
