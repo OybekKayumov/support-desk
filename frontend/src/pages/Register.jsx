@@ -38,6 +38,16 @@ function Register() {
 
      if(password !== password2) {
       toast.error('Passwords do not match')
+     } else {
+      // if password is match
+      const userData = {
+        name,
+        email,
+        password
+      }
+
+      // register from AuthSlice
+      dispatch(register(userData))
      }
   }
 
