@@ -8,8 +8,8 @@
 
 body {
   font-family: 'Poppins', sans-serif;
-  height: 100vh;
-  background-color: darkseagreen;
+  height: 100vh;  
+  background-color: #9fa2b2;
 }
 
 a {
@@ -70,6 +70,7 @@ h3 {
 
 .header ul li a:hover {
   color: #777;
+  color: #ece2d0;
 }
 
 .header ul li a svg {
@@ -85,6 +86,7 @@ h3 {
 
 .heading p {
   color: #828282;
+  color: #f4e8c1;
 }
 
 .boxes {
@@ -109,6 +111,7 @@ h3 {
 
 .boxes a:hover {
   color: #777;
+  color: #dbc2cf;
 }
 
 .form {
