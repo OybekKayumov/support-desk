@@ -2,6 +2,8 @@
 import { useState } from "react";
 import {toast} from 'react-toastify';
 import {FaUser} from "react-icons/fa";
+import {useSelector, useDispatch} from 'react-redux';
+import { register } from "../features/auth/authSlice";
 
 // const defaultState = {
 //   name: '',
@@ -19,6 +21,10 @@ function Register() {
   })
 
   const { name, email, password, password2} = formData
+
+  const dispatch = useDispatch()
+
+  const { user, isLoading, isSuccess, message } = useSelector((state) => state.auth)
 
   const onChange = (e) => {
     setFormData((prevState) => ({
