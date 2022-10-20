@@ -29,6 +29,10 @@ function Register() {
 
   const onSubmit = (e) => {
      e.preventDefault();
+
+     if(password !== password2) {
+      toast.error('Passwords do not match')
+     }
   }
 
   return (
@@ -50,7 +54,8 @@ function Register() {
               name="name"
               value={name}
               onChange={onChange}
-              placeholder='Enter your name: ' 
+              placeholder='Enter your name: '
+              required
             />
           </div>
 
@@ -62,7 +67,8 @@ function Register() {
               name="email"
               value={email}
               onChange={onChange}
-              placeholder='Enter your email: ' 
+              placeholder='Enter your email: '
+              required
             />
           </div>
 
@@ -74,7 +80,8 @@ function Register() {
               name="password"
               value={password}
               onChange={onChange}
-              placeholder='Enter your password: ' 
+              placeholder='Enter your password: '
+              required
             />
           </div>
 
@@ -86,7 +93,8 @@ function Register() {
               name="password2"
               value={password2}
               onChange={onChange}
-              placeholder='Confirm password: ' 
+              placeholder='Confirm password: '
+              required
             />
           </div>
 
