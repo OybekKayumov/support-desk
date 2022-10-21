@@ -1,10 +1,10 @@
-// import e from "express";
 import { useState, useEffect } from "react";
 import { useNavigate } from 'react-router-dom';
 import {toast} from 'react-toastify';
 import {FaUser} from "react-icons/fa";
 import {useSelector, useDispatch} from 'react-redux';
 import { register, reset } from "../features/auth/authSlice";
+import Spinner from "../components/Spinner";
 
 // const defaultState = {
 //   name: '',
@@ -64,6 +64,10 @@ function Register() {
       // register from AuthSlice
       dispatch(register(userData))
      }
+  }
+
+  if (isLoading) {
+    return <Spinner />
   }
 
   return (
