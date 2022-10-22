@@ -8,13 +8,17 @@ const Ticket = require('../models/ticketModel')
 // @access  Private
 
 const getTickets = asyncHandler(async (req, res) => {
-  // const user = {
-  //    id: req.user._id,
-  //    email: req.user.email,
-  //    name: req.user.name,
-  // }
+  // get user using the ID in th JWT
+  const user = await User.findById(req.user.id)
+  
+  if(!user) {
+    res.status(401)
+    throw new Error('User nor found')    
+  }
+  const tickets = await Ticket.find({ user: req.user.id})
 
-  res.status(200).json({ message: 'getTickets'})
+  // res.status(200).json({ message: 'getTickets'})
+  res.status(200).json(tickets)
 })
 
 // @desc    Create a new tickets
