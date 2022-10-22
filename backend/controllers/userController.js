@@ -5,13 +5,11 @@ const jwt = require('jsonwebtoken')
 const User = require('../models/userModel')
 
 // @desc    Register a new user
-// @route   /api/user/
+// @route   /api/users
 // @access  Public
 
 const registerUser = asyncHandler(async (req, res) => {
-  // console.log(req.body); POST name, email, pwd: /api/users
-
-  const {name, email, password} = req.body
+  const { name, email, password } = req.body
 
   //* Validation
   if (!name || !email || !password) {    
@@ -19,10 +17,10 @@ const registerUser = asyncHandler(async (req, res) => {
      throw new Error('Please include all fields') 
   }
 
-  // Find is user already exists
-  const userExists = await User.findOne({email})
+  // Find if user already exists
+  const userExists = await User.findOne({ email })
 
-  if(userExists) {
+  if (userExists) {
     res.status(400)
     throw new Error('User already exists')
   }
@@ -35,15 +33,15 @@ const registerUser = asyncHandler(async (req, res) => {
   const user = await User.create({
     name,
     email,
-    password: hashedPassword
+    password: hashedPassword,
   })
   
-  if(user) {
+  if (user) {
     res.status(201).json({
       _id: user._id,
       name: user.name,
       email: user.email,
-      token: generateToken(user._id)
+      token: generateToken(user._id),
     })
   } else {
     res.status(400)
@@ -59,27 +57,27 @@ const registerUser = asyncHandler(async (req, res) => {
 
 const loginUser = asyncHandler(async (req, res) => {
   // get email and pwd from body
-  const {email, password} = req.body
-  const user = await User.findOne({email})
+  const { email, password } = req.body
+  const user = await User.findOne({ email })
 
   // Check user and pwd match, if user found and password is matches
-  if(user && (await bcrypt.compare(password, user.password))) {
+  if (user && (await bcrypt.compare(password, user.password))) {
     res.status(200).json({
       _id: user._id,
       name: user.name,
       email: user.email,
-      token: generateToken(user._id)
+      token: generateToken(user._id),
     })
   } else {
     res.status(401)
     throw new Error('Invalid credentials')
   }
 
-  res.send('Login Route')
+  // res.send('Login Route')
 })
 
 // @desc    Get current user
-// @route   /api/user/me
+// @route   /api/users/me
 // @access  Private
 
 const getMe = asyncHandler(async (req, res) => {
@@ -94,7 +92,7 @@ const getMe = asyncHandler(async (req, res) => {
   res.status(200).json(user)
 })
 
-// Generate Token
+// Generate token
 const generateToken = (id) => {
   return jwt.sign({ id }, process.env.JWT_SECRET, {
     expiresIn: '30d',
