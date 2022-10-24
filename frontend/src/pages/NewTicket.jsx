@@ -11,7 +11,7 @@ function NewTicket() {
   const onSubmit = (e) => {
     e.preventDefault();
   }
-  
+
   return (
     <>
       <section>
@@ -31,7 +31,20 @@ function NewTicket() {
         </div>
 
         <form onSubmit={onSubmit}>
+          <div className='form-group'>
 
+            <label htmlFor="product">Product</label>
+            <select 
+              name="product" 
+              id="product" 
+              value={product} 
+              onChange={(e) => setProduct(e.target.value)}>
+                <option value="iPhone">iPhone</option>
+                <option value="Mackbook Pro">Macbook Pro</option>
+                <option value="iMac">iMac</option>
+                <option value="iPad">iPad</option>
+            </select>
+          </div>
         </form>
       </section>
     </>
