@@ -45,6 +45,21 @@ function NewTicket() {
                 <option value="iPad">iPad</option>
             </select>
           </div>
+
+          <div className='form-control'>
+            <label htmlFor="description">Description of the issue</label>
+            <textarea 
+              name="description" 
+              id="description" 
+              className='form-control'
+              placeholder='Description'
+              value={description}
+              onChange={(e) => setDescription(e.target.value)}
+            >
+
+            </textarea>
+
+          </div>
         </form>
       </section>
     </>
