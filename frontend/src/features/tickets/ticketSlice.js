@@ -70,6 +70,20 @@ export const ticketSlice = createSlice({
         state.isError = true
         state.message = action.payload
       })
+      //
+      .addCase(getTickets.pending, (state) => {
+        state.isLoading = true
+      })
+      .addCase(getTickets.fulfilled, (state, action) => {
+        state.isLoading = false
+        state.isSuccess = true
+        state.tickets = action.payload
+      })
+      .addCase(getTickets.rejected, (state, action) => {
+        state.isLoading = false
+        state.isError = true
+        state.message = action.payload
+      })
   }
 })
 
