@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import {useSelector, useDispatch} from 'react-redux';
 import Spinner from '../components/Spinner';
 import BackButton from '../components/BackButton';
-import { getTickets } from '../features/tickets/ticketSlice';
+import { getTickets, reset } from '../features/tickets/ticketSlice';
 
 function Tickets() {
   const {tickets, isLoading, isSuccess } = useSelector((state) => state.tickets)
@@ -26,7 +26,9 @@ function Tickets() {
   }
 
   return (
-    <div>Tickets</div>
+    <div>
+      <h1>Tickets</h1>
+    </div>
   )
 }
 
