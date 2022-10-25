@@ -85,15 +85,11 @@ function NewTicket() {
               placeholder='Description'
               value={description}
               onChange={(e) => setDescription(e.target.value)}
-            >
-
-            </textarea>
+            ></textarea>
           </div>
 
           <div className='form-group'>
-            <button className='btn btn-block'>
-              Submit
-            </button>
+            <button className='btn btn-block'>Submit</button>
           </div>
         </form>
       </section>
