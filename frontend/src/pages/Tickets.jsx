@@ -32,19 +32,15 @@ function Tickets() {
       <h1>Tickets</h1>
 
       <div className='tickets'>
-        <div className='ticket-heading'>
+        <div className='ticket-headings'>
           <div>Date</div>
           <div>Product</div>
           <div>Status</div>
-
-          <div>
+          <div></div>
+        </div>
             {tickets.map((ticket) => (
               <TicketItem key={ticket._id} ticket={ticket} />
             ))}
-          </div>
-
-        </div>
-
       </div>
     </>
   )
