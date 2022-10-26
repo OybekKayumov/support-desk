@@ -138,6 +138,16 @@ export const ticketSlice = createSlice({
         state.isError = true
         state.message = action.payload
       })
+      //
+      .addCase(closeTicket.fulfilled, (state, action) => {
+        state.isLoading = false
+        // array tickets
+        state.tickets.map((ticket) => 
+          ticket._id === action.payload._id
+          ? (ticket.status = 'closed')
+          : ticket
+        )
+      })
   }
 })
 
