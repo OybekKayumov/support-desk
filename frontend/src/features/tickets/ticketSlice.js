@@ -70,6 +70,26 @@ export const getTicket = createAsyncThunk(
   }
 })
 
+// Close ticket
+export const closeTicket = createAsyncThunk(
+  'tickets/close', 
+  async (ticketId, thunkAPI) => {
+  // console.log('user: ', user);
+  try {
+    const token = thunkAPI.getState().auth.user.token
+    return await ticketService.closeTicket(ticketId, token)
+  } catch (error) {
+    const message = 
+      (error.response && 
+        error.response.data && 
+        error.response.data.message) || 
+        error.message || 
+        error.toString()
+        
+    return thunkAPI.rejectWithValue(message)
+  }
+})
+
 export const ticketSlice = createSlice({
   name: 'ticket',
   initialState,
