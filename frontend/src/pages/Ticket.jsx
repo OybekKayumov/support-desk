@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { toast } from 'react-toastify'
 import {useSelector, useDispatch} from 'react-redux'
-import {toast} from 'react-toastify'
+import { useParams, useNavigate } from 'react-router-dom'
 import {getTicket, reset, closeTicket} from '../features/tickets/ticketSlice.js'
 import BackButton from '../components/BackButton'
 import Spinner from '../components/Spinner'
@@ -12,7 +12,7 @@ function Ticket() {
   const params = useParams()
   const navigate = useNavigate()
   const dispatch = useDispatch()
-  const {ticketId} = useParams()
+  const { ticketId } = useParams()
 
   useEffect(() => {
     if(isError) {
@@ -22,6 +22,13 @@ function Ticket() {
     dispatch(getTicket(ticketId))
     // eslint-disable-next-line
   }, [isError, message, ticketId])
+
+  // close ticket
+  const onTicketClose = () => {
+    dispatch(closeTicket(ticketId))
+    toast.success('Ticket Closed...')
+    navigate('/tickets')
+  }
   
   if(isLoading) {
     return <Spinner />
@@ -29,13 +36,6 @@ function Ticket() {
 
   if(isError) {
     return <h3>Something Went Wrong...</h3>
-  }
-
-  // close ticket
-  const onTicketClose = () => {
-    dispatch(closeTicket(ticketId))
-    toast.success('Ticket Closed...')
-    navigate('/tickets')
   }
 
   return (
