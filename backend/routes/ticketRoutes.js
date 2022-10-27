@@ -9,6 +9,10 @@ const {
 
 const { protect } = require('../middleware/authMiddleware')
 
+// bring in noteRouter - подключаем noteRouter - Re-route (Перенаправить) into note router
+const noteRouter = require('./noteRoutes')
+router.use('./:ticketId/notes', noteRouter)
+
 // api request
 router.route('/').get(protect, getTickets).post(protect, createTicket)
 

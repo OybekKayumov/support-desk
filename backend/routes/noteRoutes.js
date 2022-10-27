@@ -1,6 +1,7 @@
 const { application } = require('express')
 const express = require('express')
-const router = express.Router()
+const router = express.Router({ mergeParams: true })
+
 const { getNotes } = require('../controllers/noteController')
 
 const { protect } = require('../middleware/authMiddleware')
