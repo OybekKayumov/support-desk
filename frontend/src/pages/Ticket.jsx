@@ -1,5 +1,7 @@
-import React, {useEffect} from 'react'
+import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify'
+import Modal from 'react-modal'
+import { FaPlus } from 'react-icons/fa'
 import {useSelector, useDispatch} from 'react-redux'
 import { useParams, useNavigate } from 'react-router-dom'
 import {getTicket, closeTicket} from '../features/tickets/ticketSlice.js'
@@ -7,8 +9,25 @@ import { getNotes, reset as notesReset } from '../features/notes/noteSlice.js'
 import BackButton from '../components/BackButton'
 import Spinner from '../components/Spinner'
 import NoteItem from '../components/NoteItem'
+
+const customStyles = {
+  content: {
+    width: '600px',
+    top: '50%',
+    left: '50%',
+    right: 'auto',
+    bottom: 'auto',
+    marginLeft: '-50%',
+    transform: 'translate(-50%, -50%)',
+    position: 'relative'
+  }
+}
  
+Modal.setAppElement('#root')
+
 function Ticket() {
+  const [modalIsOpen, setModalIsOpen] = useState(false)
+  const [noteText, setNoteText] = useState('')
   const { ticket, isLoading, isSuccess, isError, message} = useSelector((state) => state.tickets)
 
   const { notes, isLoading: notesIsLoading } = useSelector((state) => state.notes)
@@ -34,6 +53,9 @@ function Ticket() {
     toast.success('Ticket Closed...')
     navigate('/tickets')
   }
+
+  // open/close Modal
+  
   
   if(isLoading || notesIsLoading) {
     return <Spinner />
@@ -64,6 +86,10 @@ function Ticket() {
         </div>
         <h2>Notes</h2>
       </header>
+
+      {ticket.status !== 'closed' && (
+        <button onClick={openModal} className='btn'><FaPlus />Add Note</button>
+      )}
 
       {notes.map((note) => (
         <NoteItem key={note._id} note={note} />
