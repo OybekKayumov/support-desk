@@ -55,7 +55,8 @@ function Ticket() {
   }
 
   // open/close Modal
-  
+  const openModal = () => setModalIsOpen(true)
+  const closeModal = () => setModalIsOpen(false)
   
   if(isLoading || notesIsLoading) {
     return <Spinner />
@@ -90,6 +91,21 @@ function Ticket() {
       {ticket.status !== 'closed' && (
         <button onClick={openModal} className='btn'><FaPlus />Add Note</button>
       )}
+
+      <Modal 
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={customStyles}
+      >
+        <h2>Add Note</h2>
+        <button 
+          className='btn-close'
+          onClick={closeModal}
+          >
+            X
+          </button>
+          
+      </Modal>
 
       {notes.map((note) => (
         <NoteItem key={note._id} note={note} />
