@@ -104,7 +104,28 @@ function Ticket() {
           >
             X
           </button>
-          
+          <form onSubmit={onNoteSubmit}>
+            <div className='form-group'>
+              <textarea 
+                name="noteText" 
+                id="noteText" 
+                className='form-control' 
+                placeholder='noteText'
+                value={noteText}
+                onChange={(e) => setNoteText(e.target.value)} 
+              >
+              </textarea>
+            </div>
+
+            <div className='form-group'>
+              <button
+                className='btn' type='submit'
+              >
+                Submit
+              </button>
+            </div>
+
+          </form>
       </Modal>
 
       {notes.map((note) => (
