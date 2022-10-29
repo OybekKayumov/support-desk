@@ -1,8 +1,11 @@
 const asyncHandler = require('express-async-handler')
 
-const User = require('../models/userModel')
+// const User = require('../models/userModel')
 const Note = require('../models/noteModel')
 const Ticket = require('../models/ticketModel')
+
+// NOTE: no need to get the user, we already have them on req object from
+// protect middleware. The protect middleware already checks for valid user.
 
 // @desc    Get notes for a ticket
 // @route   GET /api/tickets/:ticketId/notes
@@ -10,15 +13,15 @@ const Ticket = require('../models/ticketModel')
 
 const getNotes = asyncHandler(async (req, res) => {
   // get user using the ID in th JWT
-  const user = await User.findById(req.user.id)
+  // const user = await User.findById(req.user.id)
   
-  if(!user) {
-    res.status(401)
-    throw new Error('User not found')    
-  }
+  // if(!user) {
+  //   res.status(401)
+  //   throw new Error('User not found')    
+  // }
   const ticket = await Ticket.findById(req.params.ticketId)
 
-  if(ticket.user.toString() !== req.user.id) {
+  if (ticket.user.toString() !== req.user.id) {
     res.status(401)
     throw new Error('User not authorized')
   }
@@ -34,15 +37,15 @@ const getNotes = asyncHandler(async (req, res) => {
 
 const addNote = asyncHandler(async (req, res) => {
   // get user using the ID in th JWT
-  const user = await User.findById(req.user.id)
+  // const user = await User.findById(req.user.id)
   
-  if(!user) {
-    res.status(401)
-    throw new Error('User not found')    
-  }
+  // if(!user) {
+  //   res.status(401)
+  //   throw new Error('User not found')    
+  // }
   const ticket = await Ticket.findById(req.params.ticketId)
 
-  if(ticket.user.toString() !== req.user.id) {
+  if (ticket.user.toString() !== req.user.id) {
     res.status(401)
     throw new Error('User not authorized')
   }
@@ -51,7 +54,7 @@ const addNote = asyncHandler(async (req, res) => {
     text: req.body.text,
     isStaff: false,
     ticket: req.params.ticketId,
-    user: req.user.id
+    user: req.user.id,
    })
  
   res.status(200).json(note)

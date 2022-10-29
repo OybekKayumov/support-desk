@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios from 'axios'
 
 const API_URL = '/api/users/'
 
@@ -31,4 +31,4 @@ const authService = {
   login,
 }
 
-export default authService;
+export default authService

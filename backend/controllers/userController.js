@@ -45,19 +45,20 @@ const registerUser = asyncHandler(async (req, res) => {
     })
   } else {
     res.status(400)
-    throw new error('Invalid user data !!!')
+    throw new error('Invalid user data')
   }
 
   // res.send('Register Route')
 })
 
 // @desc    Login a user
-// @route   /api/user/login
+// @route   /api/users/login
 // @access  Public
 
 const loginUser = asyncHandler(async (req, res) => {
   // get email and pwd from body
   const { email, password } = req.body
+  
   const user = await User.findOne({ email })
 
   // Check user and pwd match, if user found and password is matches

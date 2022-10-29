@@ -1,6 +1,7 @@
 const mongoose = require('mongoose')
 
-const userSchema = mongoose.Schema({
+const userSchema = mongoose.Schema(
+  {
   name: {
     type: String,
     required: [true, 'Please add a name'],
@@ -8,7 +9,7 @@ const userSchema = mongoose.Schema({
   email: {
     type: String,
     required: [true, 'Please add an email'],
-    unique: true
+    unique: true,
   },
   password: {
     type: String,
@@ -17,8 +18,8 @@ const userSchema = mongoose.Schema({
   isAdmin: {
     type: Boolean,
     required: true,
-    default: false
-  }
+    default: false,
+  },
 }, 
 {
   timestamps: true,
@@ -26,4 +27,3 @@ const userSchema = mongoose.Schema({
 )
 
 module.exports = mongoose.model('User', userSchema)
-

@@ -1,0 +1,5 @@
+// change this file name to .env and add your own values
+NODE_ENV = development
+PORT = 5000
+MONGO_URI = mongodb+srv://youruri
+JWT_SECRET = abc123
