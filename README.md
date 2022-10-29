@@ -7,7 +7,7 @@
 
 ### Set Environment Variables
 
-- [ ]  Rename the `.envexample` to `.env` and add your MongoDB database URI and your JWT secret
+- [ ]  Rename the `.enwexample` to `.env` and add your MongoDB database URI and your JWT secret
 
 ### Install backend dependencies
 

@@ -9,7 +9,7 @@
 body {
   font-family: 'Poppins', sans-serif;
   height: 100vh;  
-  background-color: #9fa2b2;
+  background-color: #67b99a;
 }
 
 a {
@@ -146,6 +146,7 @@ h3 {
   border-radius: 5px;
   background: #000;
   color: #fff;
+  color: #e85d04;
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
